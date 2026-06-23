@@ -1,0 +1,18 @@
+name: Daily English Brief
+on:
+  schedule:
+    - cron: '0 23 * * *'   # UTC 23:00 = 北京时间 7:00
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install feedparser requests
+      - run: python morning_brief.py
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
