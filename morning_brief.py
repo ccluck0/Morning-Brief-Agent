@@ -65,8 +65,8 @@ def call_llm(prompt):
         json=payload, headers=headers, timeout=60
     )
     response = requests.post(url, headers=headers, json=payload)
-print("状态码:", response.status_code)  
-print("返回内容:", response.text)  
+    print("状态码:", response.status_code)  
+    print("返回内容:", response.text)  
     return r.json()["choices"][0]["message"]["content"]
 
 # ── 3. 推送（飞书群机器人webhook）────────────────────
