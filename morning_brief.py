@@ -64,12 +64,16 @@ def call_llm(prompt):
         "https://api.deepseek.com/chat/completions",
         json=payload, headers=headers, timeout=60
     )
+    response = requests.post(url, headers=headers, json=payload)
+print("状态码:", response.status_code)  
+print("返回内容:", response.text)  
     return r.json()["choices"][0]["message"]["content"]
 
 # ── 3. 推送（飞书群机器人webhook）────────────────────
 def push_to_feishu(text):
     wh = os.environ["FEISHU_WEBHOOK"]
-    requests.post(wh, json={"msg_type":"text","content":{"text":text}})
+    requests.post(wh, json={"msg_type":"t
+    ext","content":{"text":text}})
 
 # ── RUN ───────────────────────────────────────────────
 if __name__ == "__main__":
