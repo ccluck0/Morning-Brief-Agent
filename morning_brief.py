@@ -72,8 +72,10 @@ def call_llm(prompt):
 # ── 3. 推送（飞书群机器人webhook）────────────────────
 def push_to_feishu(text):
     wh = os.environ["FEISHU_WEBHOOK"]
-    requests.post(wh, json={"msg_type":"t
-    ext","content":{"text":text}})
+    requests.post(wh, json={"msg_type":"text",
+                            "content":{"text":text}
+                           }
+                 )
 
 # ── RUN ───────────────────────────────────────────────
 if __name__ == "__main__":
