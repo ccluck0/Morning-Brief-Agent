@@ -51,6 +51,7 @@ Output ONLY the brief, no extra talk.
 def call_llm(prompt):
     # 使用 DeepSeek API
     api_key = os.environ["DEEPSEEK_API_KEY"]
+    url = "https://api.deepseek.com/chat/completions" 
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
